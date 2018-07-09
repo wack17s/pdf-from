@@ -1,0 +1,50 @@
+{
+    "name": "pdf-from",
+    "version": "0.1.0",
+    "description": "Easily generate full-featured PDF files from HTML and other web formats",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --reporter spec --bail --check-leaks --no-exit test/"
+    },
+    "license": "MIT",
+    "author": "Christopher Stoll <stollcri@gmail.com>",
+    "homepage": "https://github.com/skiplist-eng/pdf-from#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/skiplist-eng/pdf-from.git"
+    },
+    "bugs": {
+        "url": "https://github.com/skiplist-eng/pdf-from/issues"
+    },
+    "keywords": [
+        "pdf",
+        "html",
+        "chrome",
+        "puppeteer",
+        "pdf-from",
+        "pdf-from-html",
+        "pdf-creator",
+        "pdf-generator",
+        "pdf-puppeteer",
+        "html-to-pdf",
+        "create-pdf",
+        "generate-pdf",
+        "puppeteer-pdf"
+    ],
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "dependencies": {
+        "fs": "^0.0.1-security",
+        "puppeteer": "^1.5.0",
+        "tmp": "^0.0.33"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "mocha": "3.5.3"
+    }
+}

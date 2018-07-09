@@ -1,12 +1,15 @@
 # pdf-from
 
+Easily generate full-featured PDF files from HTML and other web formats
+
 <!-- [START badges] -->
 [![NPM Version](https://img.shields.io/npm/v/pdf-from.svg)](https://www.npmjs.com/package/pdf-from)
 [![Node Requirement](https://img.shields.io/node/v/pdf-from.svg)](https://www.npmjs.com/package/pdf-from)
 [![License](https://img.shields.io/npm/l/pdf-from.svg)](https://github.com/skiplist-eng/pdf-from/blob/master/LICENSE)
 [![Number of Downloads](https://img.shields.io/npm/dm/pdf-from.svg)](https://www.npmjs.com/package/pdf-from) 
 <!-- [END badges] -->
-Easily generate full-featured PDF files from HTML and other web format
+
+This package is for rendering PDF files on the server, not on the client. If any resources are not accessible to the server, then they will not be included in the resulting PDF.
 
 ## Installation  
 
@@ -44,6 +47,25 @@ const htmlString = `
 await pdfFrom.html(htmlString);
 ```
 
+#### Express Example
+
+This example renders a template, converts the resulting HTML to a PDF, and then sends the PDF back to the browser.
+
+```js
+const pdfFrom = require("pdf-from");
+
+const template = "my_pug_template";
+res.render(template, structuredData, (err, htmlString) => {
+    const applicationPdf = await pdfFrom.html(htmlString);
+    if (applicationPdf && Buffer.isBuffer(applicationPdf)) {
+        res.type("application/pdf");
+        res.send(applicationPdf);
+    } else {
+        res.status(404).send("PDF not found");
+    }
+});
+```
+
 #### Example of Changing PDF Options
 
 ```js
@@ -74,6 +96,13 @@ await pdfFrom.html(htmlString, {
     scale: 1.25
 });
 ```
+
+#### Available Options
+
+- `wrapOutput` normally a buffer is returned with the raw PDF data, this switch causes the PDF data to be wrapped in an object: `{ pdf: [Buffer] }`
+- `useScreenMedia` normally the print styles will be used if they are available, this switch causes any print styles to be ignored
+
+The package also respects all of the [Puppeteer PDF rendering options](https://pptr.dev/#?product=Puppeteer&version=v1.5.0&show=api-pagepdfoptions).
 
 ## Caveats
 

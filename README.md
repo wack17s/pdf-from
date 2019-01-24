@@ -55,7 +55,7 @@ This example renders a template, converts the resulting HTML to a PDF, and then 
 const pdfFrom = require("pdf-from");
 
 const template = "my_pug_template";
-res.render(template, structuredData, (err, htmlString) => {
+res.render(template, structuredData, async (err, htmlString) => {
     const applicationPdf = await pdfFrom.html(htmlString);
     if (applicationPdf && Buffer.isBuffer(applicationPdf)) {
         res.type("application/pdf");

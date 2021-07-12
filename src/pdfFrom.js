@@ -112,6 +112,7 @@ class pdfFrom {
             args: ["--disable-setuid-sandbox", "--no-sandbox"]
         });
         const page = await browser.newPage();
+        page.setDefaultNavigationTimeout(0);
         try {
             await page.goto(`file://${tmpHtmlFile.name}`, {
                 waitUntil: "networkidle2"
